@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film App</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>🎬 Filmovi</h1>
+
+    <section>
+        <h2>Dodaj film</h2>
+        <input type="text" id="title" placeholder="Naziv filma">
+        <input type="text" id="year" placeholder="Godina">
+        <input type="text" id="director" placeholder="Režiser">
+        <input type="text" id="genres" placeholder="Žanrovi (odvojeni zarezom)">
+        <button id="addBtn">Dodaj film</button>
+    </section>
+
+    <section>
+        <h2>Pronađi film po ID-ju</h2>
+        <input type="text" id="searchId" placeholder="ID filma">
+        <button id="searchBtn">Pronađi</button>
+        <pre id="result"></pre>
+    </section>
+
+    <section>
+        <h2>Interakcije</h2>
+        <input type="text" id="movieId" placeholder="ID filma">
+        <input type="text" id="userRating" placeholder="Tvoja ocena">
+        <button id="likeBtn">Lajkuj</button>
+        <button id="viewBtn">Dodaj pregled</button>
+        <button id="rateBtn">Oceni</button>
+    </section>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
