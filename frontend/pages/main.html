@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film App</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>🎬 Filmovi</h1>
+
+    <section>
+        <h2>Dodaj film</h2>
+        <input type="text" id="title" placeholder="Naziv filma">
+        <input type="text" id="year" placeholder="Godina">
+        <input type="text" id="director" placeholder="Režiser">
+        <div id="genres">
+    <div id="genres">
+    <strong>Žanrovi:</strong><br><br>
+
+    <label><input type="checkbox" name="genre" value="Action"> Action</label>
+    <label><input type="checkbox" name="genre" value="Adventure"> Adventure</label>
+    <label><input type="checkbox" name="genre" value="Animation"> Animation</label><br>
+
+    <label><input type="checkbox" name="genre" value="Comedy"> Comedy</label>
+    <label><input type="checkbox" name="genre" value="Crime"> Crime</label>
+    <label><input type="checkbox" name="genre" value="Drama"> Drama</label><br>
+
+    <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label>
+    <label><input type="checkbox" name="genre" value="History"> History</label>
+    <label><input type="checkbox" name="genre" value="Horror"> Horror</label><br>
+
+    <label><input type="checkbox" name="genre" value="Mystery"> Mystery</label>
+    <label><input type="checkbox" name="genre" value="Romance"> Romance</label>
+    <label><input type="checkbox" name="genre" value="Sci-Fi"> Sci-Fi</label><br>
+
+    <label><input type="checkbox" name="genre" value="Thriller"> Thriller</label>
+    <label><input type="checkbox" name="genre" value="War"> War</label>
+    <label><input type="checkbox" name="genre" value="Western"> Western</label><br>
+
+    <label><input type="checkbox" name="genre" value="Biography"> Biography</label>
+    <label><input type="checkbox" name="genre" value="Documentary"> Documentary</label>
+    <label><input type="checkbox" name="genre" value="Family"> Family</label><br>
+
+    <label><input type="checkbox" name="genre" value="Music"> Music</label>
+    <label><input type="checkbox" name="genre" value="Sport"> Sport</label>
+    <label><input type="checkbox" name="genre" value="Superhero"> Superhero</label>
+</div>
+
+        <button id="addBtn">Dodaj film</button>
+    </section>
+
+    <section>
+        <h2>Pronađi film po ID-ju</h2>
+        <input type="text" id="searchId" placeholder="ID filma">
+        <button id="searchBtn">Pronađi</button>
+        <pre id="result"></pre>
+    </section>
+
+    <section>
+        <h2>Interakcije</h2>
+        <input type="text" id="movieId" placeholder="ID filma">
+        <input type="text" id="userRating" placeholder="Tvoja ocena">
+        <button id="likeBtn">Lajkuj</button>
+        <button id="viewBtn">Dodaj pregled</button>
+        <button id="rateBtn">Oceni</button>
+    </section>
+
+    <section>
+        <h2>Moji filmovi</h2>
+        <button id="myMoviesBtn">Prikaži moje filmove</button>
+        <pre id="myMoviesResult"></pre>
+    </section>
+
+    <section>
+    <h2>Izmeni film</h2>
+        <input type="text" id="editId" placeholder="ID filma" readonly>
+        <input type="text" id="editTitle" placeholder="Naziv filma">
+        <input type="text" id="editYear" placeholder="Godina">
+        <input type="text" id="editDirector" placeholder="Režiser">
+        <input type="text" id="editGenres" placeholder="Žanrovi (odvojeni zarezom)">
+        <button id="saveEditBtn">Sačuvaj izmene</button>
+    </section>
+
+
+    <section>
+        <h2>Pretraga po nazivu</h2>
+        <input type="text" id="searchTitleInput" placeholder="Upiši naziv filma">
+        <button id="searchTitleBtn">Pretraži</button>
+        <div id="searchTitleResults"></div>
+    </section>
+
+
+    <section>
+        <h2>Top 10 filmova</h2>
+
+        <h3>Po oceni</h3>
+        <ol id="topRating"></ol>
+
+        <h3>Po lajkovima</h3>
+        <ol id="topLikes"></ol>
+
+        <h3>Po pregledima</h3>
+        <ol id="topViews"></ol>
+    </section>
+
+
+    <section>
+        <h2>🎯 Preporučeni filmovi za tebe</h2>
+        <ol id="recommendedMovies"></ol>
+    </section>
+
+    <script src="../js/movie.js"></script>
+
+</body>
+</html>

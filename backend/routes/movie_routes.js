@@ -1,13 +1,23 @@
-const express = require("express");
+// backend/routes/movie_routes.js
+import express from "express";
 const router = express.Router();
 
-const controllerMovie = require("../controllers/movie_controller");
+import * as controllerMovie from "../controllers/movie_controller.js"; // obavezno .js ekstenzija
+
+router.get("/top/:type", controllerMovie.getTopMovies);
+
+router.get("/search", controllerMovie.searchMoviesByTitle);
+router.get("/user/:username/added-movies", controllerMovie.getAddedMovies);
+router.get("/:username/:id/has-watched", controllerMovie.hasWatchedMovie);
+
+router.get("/:username/recommended", controllerMovie.getRecommendedMovies);
 
 router.post("/", controllerMovie.saveMovie);
-router.get("/:id", controllerMovie.readMovie);
-router.post("/:id/view", controllerMovie.addView);
-router.post("/:id/like", controllerMovie.addLike);
-router.post("/:id/rate", controllerMovie.addRate);
+router.post("/:username/:id/view", controllerMovie.addView);
+router.post("/:username/:id/like", controllerMovie.addLike);
+router.post("/:username/:id/rate", controllerMovie.addRate);
 
+router.put("/:id", controllerMovie.updateMovie);
+router.get("/:id", controllerMovie.readMovie); 
 
-module.exports = router;
+export default router;

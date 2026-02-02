@@ -1,4 +1,4 @@
-const logger = (req, res, next) => {
+export const logger = (req, res, next) => {
     console.log("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
     console.log(`${req.method} ${req.url}`);
     console.log("Query:", req.query);
@@ -8,4 +8,3 @@ const logger = (req, res, next) => {
     next();
 };
 
-module.exports = { logger };

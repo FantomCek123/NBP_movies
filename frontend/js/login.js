@@ -33,7 +33,7 @@ loginBtn.addEventListener("click", async () => {
 
         localStorage.setItem("username", data.username);
 
-        window.location.href = "test.html";
+        window.location.href = "main.html";
     } catch (err) {
         console.error(err);
         result.innerText = "Greška pri logovanju";

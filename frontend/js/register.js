@@ -38,3 +38,5 @@ registerBtn.addEventListener("click", async () => {
         result.innerText = "Greška pri registraciji (server problem)";
     }
 });
+
+

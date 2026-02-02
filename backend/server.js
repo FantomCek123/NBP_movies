@@ -1,16 +1,14 @@
-const express = require("express");
-const cors = require("cors");
+// backend/server.js
+import express from "express";
+import cors from "cors";
 
-const { logger } = require("./middlewares/logger");
-const { errorHandler } = require("./middlewares/errorHandler");
+import { logger } from "./middlewares/logger.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
-
-const userRouter = require("./routes/user_routes");
-const movieRouter = require("./routes/movie_routes");
-
+import userRouter from "./routes/user_routes.js";
+import movieRouter from "./routes/movie_routes.js";
 
 const app = express();
-
 
 app.use(cors());
 app.use(express.json());

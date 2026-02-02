@@ -1,23 +1,28 @@
-const bcrypt = require("bcrypt");
-const cassClient = require("../config/cassandra");
 
+import bcrypt from "bcrypt";
+import cassClient from "../config/cassandra.js"; // ESM import
 
-const registerUser = async (req, res) => {
+// Registracija korisnika
+export const registerUser = async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) 
+        if (!username || !password)
             return res.status(400).send("Popuni sva polja!");
 
+        // Provera da li username već postoji
         const check = await cassClient.execute(
             "SELECT username FROM users WHERE username = ?",
             [username],
             { prepare: true }
         );
-        if (check.rows.length > 0) 
+
+        if (check.rows.length > 0)
             return res.status(400).send("Username zauzet");
 
+        // Hash lozinke
         const hashed = await bcrypt.hash(password, 10);
 
+        // Ubacivanje korisnika u Cassandra
         await cassClient.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)",
             [username, hashed],
@@ -31,22 +36,24 @@ const registerUser = async (req, res) => {
     }
 };
 
-const loginUser = async (req, res) => {
+// Logovanje korisnika
+export const loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) 
+        if (!username || !password)
             return res.status(400).send("Popuni sva polja!");
 
+        // Dohvatanje korisnika iz Cassandra
         const user = await cassClient.execute(
             "SELECT username, password FROM users WHERE username = ?",
             [username],
             { prepare: true }
         );
 
-
-        if (user.rows.length === 0) 
+        if (user.rows.length === 0)
             return res.status(400).json({ error: "Korisnik ne postoji" });
 
+        // Provera lozinke
         const match = await bcrypt.compare(password, user.rows[0].password);
         if (!match) return res.status(400).json({ error: "Pogrešna lozinka" });
 
@@ -56,7 +63,3 @@ const loginUser = async (req, res) => {
         res.status(500).send("Greška pri logovanju");
     }
 };
-
-module.exports = { registerUser, loginUser };
-
-
