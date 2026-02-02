@@ -1,16 +1,6 @@
-services:
-  backend:
-    build: .
-    container_name: movie-backend
-    ports:
-      - "3000:3000"
-    depends_on:
-      cassandra:
-        condition: service_healthy
-      redis:
-        condition: service_started
-    restart: always
+version: "3.9"
 
+services:
   cassandra:
     image: cassandra:4.1
     container_name: movie-cassandra
@@ -25,10 +15,25 @@ services:
       retries: 10
     restart: always
 
-  redis:
-    image: redis:7
-    container_name: movie-redis
-    restart: always
+  init-cassandra:
+    image: cassandra:4.1
+    container_name: init-cassandra
+    depends_on:
+      cassandra:
+        condition: service_healthy
+    volumes:
+      - ./init.cql:/init.cql
+    command: >
+      sh -c "
+        echo 'Waiting for Cassandra...'
+        until cqlsh cassandra -e 'describe keyspaces'; do
+          sleep 5
+        done
+        echo 'Running init.cql...'
+        cqlsh cassandra -f /init.cql
+        echo 'Done initializing Cassandra.'
+      "
+    restart: "no"
 
 volumes:
   cassandra_data:
